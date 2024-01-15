@@ -10,7 +10,7 @@ public class Factura {
     private String numero;
     private LocalDate fechaFactura;
     private List<LineaFactura> lineas;
-    public final static double IVA = 0.21;
+    private static double IVA = 0.21;
     private Set<String> numerosGenerados = new HashSet<>();
 
     public Factura(String cif, String numero) {
@@ -26,13 +26,18 @@ public class Factura {
 
     public void setCif(String cif){this.cif=cif;}
 
+    public static double getIVA() {
+        return IVA;
+    }
+
+    public static void setIVA(double IVA) {
+        Factura.IVA = IVA;
+    }
+
     public String getNumero() {
         return numero;
     }
 
-    public LocalDate getFechaFactura() {
-        return fechaFactura;
-    }
 
     public void setNumero(String numero) {
         if (validarFormatoNumero(numero)) {
@@ -48,6 +53,9 @@ public class Factura {
         }
     }
 
+    public LocalDate getFechaFactura() {
+        return fechaFactura;
+    }
 
     private boolean validarFormatoNumero(String numero) {
 
